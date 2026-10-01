@@ -20,6 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Git LFS
+        run: |
+          sudo apt-get install git-lfs
+          git lfs install
+          git lfs pull
+
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
@@ -31,15 +37,14 @@ jobs:
 
       - name: Build
         run: pnpm build:game
-        # adjust to match the actual build script in package.json
 
       - name: Add .nojekyll
-        run: touch ./out/.nojekyll
+        run: touch ./packages/game/dist/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./packages/game/dist
 
   deploy:
     needs: build
