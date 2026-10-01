@@ -8,3 +8,10 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+const nextConfig = {
+  output: "export",
+  basePath: "/CosmosJourneyer",   // ← your repo name
+  assetPrefix: "/CosmosJourneyer/",
+  images: { unoptimized: true },
+};   
